@@ -1,4 +1,3 @@
-
 document.getElementById('companyForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -28,9 +27,6 @@ document.getElementById('companyForm').addEventListener('submit', function (even
 });
 
 function displayDashboard(data) {
-
-
-  
 
   const naceTable = document.getElementById('naceTable');
   if (!naceTable) {

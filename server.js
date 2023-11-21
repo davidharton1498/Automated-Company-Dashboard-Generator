@@ -4,16 +4,54 @@ const axios = require('axios');
 const path = require('path'); 
 const app = express();
 const port = 3000;
-const puppeteer = require('puppeteer');
 app.use(bodyParser.json());
 app.use(express.static('public'));
-const ejs = require('ejs');
 const { ApifyClient } = require('apify-client');
-
 // Initialize the ApifyClient with API token
 const client = new ApifyClient({
-    token: 'apify_api_WUtA1nl4bi3pdj3QiYiptzqTerwehH28Q6aK',
+  token: 'apify_api_WUtA1nl4bi3pdj3QiYiptzqTerwehH28Q6aK',
 });
+// Prepare Actor input
+const input = {
+  "language": "en",
+  "maxReviews": 5,
+  "personalData": true,
+  "reviewsSort": "newest",
+  "startUrls": [
+    {
+      "url": "https://google.com/maps/place/Domino's+Pizza+Paris+15+Cambronne/@48.8584563,2.2742733,14z/data=!4m10!1m2!2m1!1sdominos+pizza!3m6!1s0x47e6703cdcd00001:0x106d3f9c81fe3532!8m2!3d48.8458574!4d2.3021046!15sCg1kb21pbm9zIHBpenphIgOIAQFaDyINZG9taW5vcyBwaXp6YZIBEHBpenphX3Jlc3RhdXJhbnTgAQA!16s%2Fg%2F11bzr78443?entry=ttu"
+    }
+  ]
+};
+const reviews=[];
+
+(async () => {
+  try {
+    const run = await client.actor("compass/Google-Maps-Reviews-Scraper").call(input);
+
+    // Fetch and print Actor results from the run's dataset (if any)
+    console.log('Results from dataset');
+    const { items } = await client.dataset(run.defaultDatasetId).listItems();
+    items.forEach((item) => {
+        //console.dir(item);
+        //console.log(item.title)
+        const review={
+        "title":item.title,
+        "categoryName": item.categoryName,
+        "website": item.website,
+        "url": item.url,
+        "reviewsCount": item.reviewsCount,
+        "stars": item.stars,
+        "text": item.text
+        }
+        reviews.push(review)
+    });
+      console.log(reviews);
+  } catch (error) {
+      console.error('Error during execution:', error);
+  }
+})();
+
 const withPuppeteer = require("./getReviews");
 const withSerpApi = require("./withSerpApi");
 const getReviews = require('./getReviews')
@@ -64,6 +102,7 @@ app.post('/generate-dashboard', async (req, res) => {
   }
 
 });
+
 
 // Function to enrich data using the Veridion API
 async function enrichData(data) {
