@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="shortcut icon" href="img/favicon.svg" />
+
+	<!-- Title -->
+	<title>Bootstrap Admin Dashboard - Dashboard</title>
+
+
+	<!-- *************
+			************ Common Css Files *************
+		************ -->
+	<!-- Bootstrap css -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+
+	<!-- Icomoon Font Icons css -->
+	<link rel="stylesheet" href="fonts/style.css">
+
+	<!-- Main css -->
+	<link rel="stylesheet" href="css/main.min.css">
+
+
+	<!-- *************
+			************ Vendor Css Files *************
+		************ -->
+	<!-- DateRange css -->
+	<link rel="stylesheet" href="vendor/daterange/daterange.css" />
+
+	<!-- Chartist css -->
+	<link rel="stylesheet" href="vendor/chartist/css/chartist.min.css" />
+	<link rel="stylesheet" href="vendor/chartist/css/chartist-custom.css" />
+
+</head>
+
+<body>
+
+	<!-- Page wrapper start -->
+	<div class="page-wrapper">
+
+		<!-- Sidebar wrapper start -->
+		<nav id="sidebar" class="sidebar-wrapper">
+			<!-- Sidebar brand start  -->
+			<div class="sidebar-brand">
+				<a href="index.html" class="logo">
+					<img src="img/logo.svg" alt="Bootstrap Admin Dashboard" />
+				</a>
+				<a href="index.html" class="logo-sm">
+					<img src="img/logo-sm.svg" alt="Bootstrap Admin Dashboard" />
+				</a>
+			</div>
+			<!-- Sidebar brand end  -->
+
+			<!-- Sidebar content start -->
+			<div class="sidebar-content">
+
+				<!-- sidebar menu start -->
+				<div class="sidebar-menu">
+					<ul>
+						<li class="header-menu">General</li>
+						<li class="sidebar-dropdown active">
+							<div class="sidebar-submenu">
+								<ul>
+									<li>
+										<a href="index.html" class="current-page">Company Dashboard</a>
+									</li>
+
+								</ul>
+							</div>
+						</li>
+				</div>
+				<!-- sidebar menu end -->
+
+			</div>
+			<!-- Sidebar content end -->
+		</nav>
+		<!-- Sidebar wrapper end -->
+
+		<!-- Page content start  -->
+		<div class="page-content">
+
+			<!-- Header start -->
+			<header class="header">
+				<div class="toggle-btns">
+					<a id="toggle-sidebar" href="#">
+						<i class="icon-list"></i>
+					</a>
+					<a id="pin-sidebar" href="#">
+						<i class="icon-list"></i>
+					</a>
+				</div>
+				<div class="header-items">
+
+
+
+					<!-- Header actions end -->
+				</div>
+			</header>
+			<!-- Header end -->
+
+			<!-- Page header start -->
+			<div class="page-header">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item active">Company Dashboard</li>
+				</ol>
+
+				<ul class="app-actions">
+					<li>
+						<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Print">
+							<i class="icon-print"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#" data-toggle="tooltip" data-placement="top" title=""
+							data-original-title="Download CSV">
+							<i class="icon-cloud_download"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- Page header end -->
+
+			<!-- Main container start -->
+			<div class="main-container">
+				<div class="container mt-5">
+					<h1>Company Dashboard Generator</h1>
+					<form id="companyForm">
+						<div class="form-group">
+							<label for="companyName">Enter Company Name:</label>
+							<input type="text" class="form-control" id="companyName" required>
+						</div>
+						<div class="form-group">
+							<label for="address_txt">Enter Company Address:</label>
+							<input type="text" class="form-control" id="address_txt" required>
+						</div>
+						<button type="submit" class="btn btn-primary">Generate Dashboard</button>
+					</form>
+					<div id="dashboardContainer" class="mt-5"></div>
+				</div>
+				<!-- Row start -->
+				<div class="row gutters">
+					<!-- New tile for num_locations -->
+					<div class="col-xl-5 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<!-- Display the number of locations dynamically -->
+								<p>Soleadify id</p>
+								<h5 id="soleadifyId"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Match score</p>
+								<h5 id="match_score"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl- col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Match method</p>
+								<h5 id="match_method"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Company name</p>
+								<h5 id="company_name"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Company legal names</p>
+								<h5 id="company_legal_names"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-4 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Company commercial names</p>
+								<h5 id="company_commercial_names"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main country code</p>
+								<h5 id="main_country_code"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main country</p>
+								<h5 id="main_country"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main region</p>
+								<h5 id="main_region"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main city</p>
+								<h5 id="main_city"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main street</p>
+								<h5 id="main_street"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main street number</p>
+								<h5 id="main_street_number"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main postcode</p>
+								<h5 id="main_postcode"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main latitude</p>
+								<h5 id="main_latitude"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main longitude</p>
+								<h5 id="main_longitude"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Num locations</p>
+								<h5 id="num_locations"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Company type</p>
+								<h5 id="company_type"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Year founded</p>
+								<h5 id="year_founded"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Employee count</p>
+								<h5 id="employee_count"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Estimated revenue</p>
+								<h5 id="estimated_revenue"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Business tags</p>
+								<h5 id="business_tags"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main business category</p>
+								<h5 id="main_business_category"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main industry</p>
+								<h5 id="main_industry"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Main sector</p>
+								<h5 id="main_sector"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Primary phone</p>
+								<h5 id="primary_phone"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Phone numbers</p>
+								<h5 id="phone_numbers"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Primary_email</p>
+								<h5 id="primary_email"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Emails</p>
+								<h5 id="emails"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Other emails</p>
+								<h5 id="other_emails"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-5 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Website url</p>
+								<h5 id="website_url"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Website domain</p>
+								<h5 id="website_domain"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Website tld</p>
+								<h5 id="website_tld"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Website language code</p>
+								<h5 id="website_language_code"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-3 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Facebook url</p>
+								<h5 id="facebook_url"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Twitter url</p>
+								<h5 id="twitter_url"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Instagram url</p>
+								<h5 id="instagram_url"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-5 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Linkedin url</p>
+								<h5 id="linkedin_url"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Ios app url</p>
+								<h5 id="ios_app_url"></h5>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-2 col-sm-4 col-6">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>ncci_codes_28_1</p>
+								<h5 id="ncci_codes_28_1"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<div class="info-tiles">
+							<div class="info-icon secondary">
+								<i class="icon-check_circle"></i>
+							</div>
+							<div class="stats-detail">
+								<p>Technologies</p>
+								<h5 id="technologies"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>naics_2022</p>
+						<table class="table" id="naics_2022">
+							<thead>
+								<tr>
+									<th>naics_2022_primary_code</th>
+									<th>naics_2022_primary_label</th>
+									<th>naics_2022_secondary_code</th>
+									<th>naics_2022_secondary_label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>nace_rev2</p>
+						<table class="table" id="naceTable">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>sic</p>
+						<table class="table" id="sicTable">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>isic_v4</p>
+						<table class="table" id="isic_v4Table">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>sics_industry</p>
+						<table class="table" id="sics_industry">
+							<thead>
+								<tr>
+									<th>code</th>
+									<th>label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>sics_sector</p>
+						<table class="table" id="sics_sector">
+							<thead>
+								<tr>
+									<th>code</th>
+									<th>label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>sics_subsector</p>
+						<table class="table" id="sics_subsector">
+							<thead>
+								<tr>
+									<th>code</th>
+									<th>label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>additional_match_details</p>
+						<table class="table" id="additional_match_details">
+							<thead>
+								<tr>
+									<th>country_code</th>
+									<th>country</th>
+									<th>region</th>
+									<th>city</th>
+									<th>postcode</th>
+									<th>street</th>
+									<th>street_number</th>
+									<th>latitude</th>
+									<th>longitude</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>ibc_insurance</p>
+						<table class="table" id="ibc_insurance">
+							<thead>
+								<tr>
+									<th>Code</th>
+									<th>Label</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>locations</p>
+						<table class="table" id="locationsTable">
+							<thead>
+								<tr>
+									<th>Country Code</th>
+									<th>Country</th>
+									<th>Region</th>
+									<th>City</th>
+									<th>Postcode</th>
+									<th>Street</th>
+									<th>Street Number</th>
+									<th>Latitude</th>
+									<th>Longitude</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<div class="info-tiles">
+							<div class="stats-detail">
+								<p>Short description</p>
+								<h5 id="short_description"></h5>
+
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<div class="info-tiles">
+							<div class="stats-detail">
+								<p>Long description</p>
+								<h5 id="long_description"></h5>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row ends -->
+				<!-- Row starts -->
+				<div class="row gutters">
+					<div class="col-xl-6 col-sm-12 col-12">
+						<div class="card h-420">
+							<div class="card-header">
+								<div class="card-title">Locations</div>
+							</div>
+							<div class="card-body">
+								<div class="row justify-content-center">
+									<div class="col-xl-10">
+										<div id="world-map-markers2" class="chart-height-md1"></div>
+									</div>
+								</div>
+								<div class="row gutters justify-content-center">
+									<div class="col-sm-4 col-6">
+										<div class="info-stats">
+											<span class="info-label"></span>
+											<p class="info-title">Locations</p>
+											<h5 id="num_locationss"></h5>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Row ends -->
+					<h1>Reviews Dashboard</h1>
+					<div class="col-xl-20 col-sm-20 col-9">
+						<p>reviews</p>
+						<table class="table" id="reviewsTable">
+							<thead>
+								<tr>
+									<th>name</th>
+									<th>date</th>
+									<th>rating</th>
+									<th>content</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Table content will be dynamically added here -->
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="col-xl-4 col-sm-6 col-12">
+						<div class="card h-320">
+							<div class="card-header">
+								<div class="card-title">Overall Ratings</div>
+							</div>
+							<div class="card-body">
+								<div class="user-ratings">
+									<div class="total-ratings">
+										<h2>4.5</h2>
+										<div class="rating-stars">
+											<div id="rate1"></div>
+										</div>
+									</div>
+									<div class="ratings-list-container">
+										<div class="ratings-list">
+											<div class="rating-level">5.0</div>
+											<div class="rating-stars">
+												<div class="rateA"></div>
+											</div>
+											<div class="total">
+												8,500 <span class="percentage">65%</span>
+											</div>
+										</div>
+										<div class="ratings-list">
+											<div class="rating-level">4.0</div>
+											<div class="rating-stars">
+												<div class="rateB"></div>
+											</div>
+											<div class="total">
+												3,500 <span class="percentage">20%</span>
+											</div>
+										</div>
+										<div class="ratings-list">
+											<div class="rating-level">3.0</div>
+											<div class="rating-stars">
+												<div class="rateC"></div>
+											</div>
+											<div class="total">
+												1,400 <span class="percentage">15%</span>
+											</div>
+										</div>
+										<div class="ratings-list">
+											<div class="rating-level">2.0</div>
+											<div class="rating-stars">
+												<div class="rateD"></div>
+											</div>
+											<div class="total">
+												300 <span class="percentage">05%</span>
+											</div>
+										</div>
+										<div class="ratings-list">
+											<div class="rating-level">1.0</div>
+											<div class="rating-stars">
+												<div class="rateE"></div>
+											</div>
+											<div class="total">
+												75 <span class="percentage">03%</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Row ends -->
+
+			</div>
+			<!-- Main container end -->
+
+		</div>
+		<!-- Page content end -->
+
+	</div>
+	<!-- Page wrapper end -->
+
+	<!--**************************
+			**************************
+				**************************
+							Required JavaScript Files
+				**************************
+			**************************
+		**************************-->
+	<!-- Required jQuery first, then Bootstrap Bundle JS -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/moment.js"></script>
+
+
+	<!-- *************
+			************ Vendor Js Files *************
+		************* -->
+	<!-- Slimscroll JS -->
+	<script src="vendor/slimscroll/slimscroll.min.js"></script>
+	<script src="vendor/slimscroll/custom-scrollbar.js"></script>
+
+	<!-- Daterange -->
+	<script src="vendor/daterange/daterange.js"></script>
+	<script src="vendor/daterange/custom-daterange.js"></script>
+
+	<!-- Chartist JS -->
+	<script src="vendor/chartist/js/chartist.min.js"></script>
+	<script src="vendor/chartist/js/chartist-tooltip.js"></script>
+	<script src="vendor/chartist/js/custom/threshold/threshold.js"></script>
+	<script src="vendor/chartist/js/custom/bar/bar-chart-orders.js"></script>
+
+	<!-- jVector Maps -->
+	<script src="vendor/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+	<script src="vendor/jvectormap/world-mill-en.js"></script>
+	<script src="vendor/jvectormap/gdp-data.js"></script>
+	<script src="vendor/jvectormap/custom/world-map-markers2.js"></script>
+
+	<!-- Rating JS -->
+	<script src="vendor/rating/raty.js"></script>
+	<script src="vendor/rating/raty-custom.js"></script>
+
+
+	<!-- Main JS -->
+	<script src="js/main.js"></script>
+	<script src="script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+
+</html>
