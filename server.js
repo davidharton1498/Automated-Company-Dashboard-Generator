@@ -52,8 +52,6 @@ const reviews=[];
   }
 })();
 
-const withPuppeteer = require("./getReviews");
-const withSerpApi = require("./withSerpApi");
 const getReviews = require('./getReviews')
 
 // Set EJS as the view engine
